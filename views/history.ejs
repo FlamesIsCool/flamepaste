@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recent Pastes - FlamePaste</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">🔥 FlamePaste</a> - Recent Public Pastes</h1>
+    <ul>
+      <% pastes.forEach(p => { %>
+        <li>
+          <a href="/paste/<%= p.id %>"><%= p.title %></a>
+          <small>(<%= new Date(p.createdAt).toLocaleString() %>, <%= p.language %>)</small>
+        </li>
+      <% }); %>
+    </ul>
+    <footer><a href="/">Back to Home</a></footer>
+  </div>
+</body>
+</html>
