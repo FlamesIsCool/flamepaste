@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pastebin Clone</title>
+  <title><%= paste ? paste.title : "Create Paste" %> - FlamePaste</title>
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Pastebin Clone</h1>
+    <h1><a href="/">🔥 FlamePaste</a></h1>
+
     <% if (!paste) { %>
       <form method="POST" action="/create">
-        <textarea name="content" rows="10" placeholder="Paste your text here..."></textarea>
+        <input type="text" name="title" placeholder="Paste Title" required><br>
+        <textarea name="content" rows="12" placeholder="Paste your code..." required></textarea><br>
+        <label>Language:
+          <select name="language">
+            <option value="plaintext">Plaintext</option>
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="json">JSON</option>
+          </select>
+        </label>
+        <label>Visibility:
+          <select name="visibility">
+            <option value="public">Public</option>
+            <option value="unlisted">Unlisted</option>
+            <option value="private">Private</option>
+          </select>
+        </label>
+        <label>Expires:
+          <select name="expiration">
+            <option value="never">Never</option>
+            <option value="10min">10 Minutes</option>
+            <option value="1h">1 Hour</option>
+          </select>
+        </label>
         <button type="submit">Create Paste</button>
       </form>
     <% } else { %>
-      <div class="paste-view">
-        <pre><%= paste.content %></pre>
-        <p>Shareable link: <code><%= request.protocol %>://<%= request.get('host') %>/paste/<%= paste.pasteId %></code></p>
-      </div>
+      <h2><%= paste.title %></h2>
+      <p class="meta">
+        Created: <%= new Date(paste.createdAt).toLocaleString() %> |
+        Visibility: <%= paste.visibility %> |
+        Language: <%= paste.language %> |
+        <a href="/raw/<%= paste.id %>">View Raw</a>
+      </p>
+      <pre><code class="<%= paste.language %>"><%= paste.content %></code></pre>
     <% } %>
+
+    <footer>
+      <a href="/">New Paste</a> |
+      <a href="/history">Public Pastes</a>
+    </footer>
   </div>
+
+  <script>hljs.highlightAll();</script>
 </body>
 </html>
