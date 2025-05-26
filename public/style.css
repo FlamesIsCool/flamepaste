@@ -1,27 +1,32 @@
 body {
-  font-family: sans-serif;
-  background: #f4f4f4;
+  font-family: system-ui, sans-serif;
+  background: #f2f2f2;
   margin: 0;
   padding: 0;
 }
 
 .container {
   max-width: 800px;
-  margin: 30px auto;
+  margin: 2rem auto;
   background: white;
-  padding: 20px;
+  padding: 2rem;
   border-radius: 10px;
 }
 
-textarea {
+h1 a {
+  text-decoration: none;
+  color: #333;
+}
+
+form input, form textarea, form select {
   width: 100%;
-  font-family: monospace;
+  margin: 10px 0;
   padding: 10px;
-  margin-bottom: 10px;
+  font-family: monospace;
 }
 
 button {
-  padding: 10px 15px;
+  padding: 10px 20px;
   background: #007bff;
   color: white;
   border: none;
@@ -29,7 +34,18 @@ button {
 }
 
 pre {
-  white-space: pre-wrap;
-  background: #eee;
-  padding: 10px;
+  background: #f8f8f8;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 5px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
 }
