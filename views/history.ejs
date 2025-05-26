@@ -7,11 +7,11 @@
 <body>
   <div class="container">
     <h1><a href="/">🔥 FlamePaste</a> - Recent Public Pastes</h1>
-    <ul>
+    <ul class="history">
       <% pastes.forEach(p => { %>
         <li>
           <a href="/paste/<%= p.id %>"><%= p.title %></a>
-          <small>(<%= new Date(p.createdAt).toLocaleString() %>, <%= p.language %>)</small>
+          <small> — <%= new Date(p.createdAt).toLocaleString() %> — <%= p.language %></small>
         </li>
       <% }); %>
     </ul>
