@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Use a persistent or temp path
-const DB_PATH = path.join(__dirname, "pastes.db");
+const DB_PATH = path.join("/tmp", "pastes.db");
 const db = new sqlite3.Database(DB_PATH);
 
 // Create table if it doesn't exist
