@@ -3,8 +3,11 @@
 <head>
   <title><%= paste ? paste.title : "Create Paste" %> - FlamePaste</title>
   <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    hljs.highlightAll();
+  </script>
 </head>
 <body>
   <div class="container">
@@ -12,32 +15,40 @@
 
     <% if (!paste) { %>
       <form method="POST" action="/create">
-        <input type="text" name="title" placeholder="Paste Title" required><br>
-        <textarea name="content" rows="12" placeholder="Paste your code..." required></textarea><br>
-        <label>Language:
-          <select name="language">
-            <option value="plaintext">Plaintext</option>
-            <option value="javascript">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="json">JSON</option>
-          </select>
-        </label>
-        <label>Visibility:
-          <select name="visibility">
-            <option value="public">Public</option>
-            <option value="unlisted">Unlisted</option>
-            <option value="private">Private</option>
-          </select>
-        </label>
-        <label>Expires:
-          <select name="expiration">
-            <option value="never">Never</option>
-            <option value="10min">10 Minutes</option>
-            <option value="1h">1 Hour</option>
-          </select>
-        </label>
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Paste Title" required>
+
+        <label>Content</label>
+        <textarea name="content" rows="14" placeholder="Paste your code here..." required></textarea>
+
+        <label>Language</label>
+        <select name="language">
+          <option value="plaintext">Plaintext</option>
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="json">JSON</option>
+          <option value="lua">Lua</option>
+          <option value="bash">Bash</option>
+          <option value="cpp">C++</option>
+          <option value="java">Java</option>
+        </select>
+
+        <label>Visibility</label>
+        <select name="visibility">
+          <option value="public">Public</option>
+          <option value="unlisted">Unlisted</option>
+          <option value="private">Private</option>
+        </select>
+
+        <label>Expiration</label>
+        <select name="expiration">
+          <option value="never">Never</option>
+          <option value="10min">10 Minutes</option>
+          <option value="1h">1 Hour</option>
+        </select>
+
         <button type="submit">Create Paste</button>
       </form>
     <% } else { %>
@@ -53,10 +64,8 @@
 
     <footer>
       <a href="/">New Paste</a> |
-      <a href="/history">Public Pastes</a>
+      <a href="/history">Recent Pastes</a>
     </footer>
   </div>
-
-  <script>hljs.highlightAll();</script>
 </body>
 </html>
