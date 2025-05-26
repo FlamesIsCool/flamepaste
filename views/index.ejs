@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pastebin Clone</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pastebin Clone</h1>
+    <% if (!paste) { %>
+      <form method="POST" action="/create">
+        <textarea name="content" rows="10" placeholder="Paste your text here..."></textarea>
+        <button type="submit">Create Paste</button>
+      </form>
+    <% } else { %>
+      <div class="paste-view">
+        <pre><%= paste.content %></pre>
+        <p>Shareable link: <code><%= request.protocol %>://<%= request.get('host') %>/paste/<%= paste.pasteId %></code></p>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
